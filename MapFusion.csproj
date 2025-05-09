@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Images\2gis.ico" />
+    <None Remove="Resources\Images\google.ico" />
+    <None Remove="Resources\Images\logo-white.png" />
+    <None Remove="Resources\Images\logo.ico" />
+    <None Remove="Resources\Images\proxy.ico" />
+    <None Remove="Resources\Images\yandex.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="CsvHelper" Version="33.0.1" />
+    <PackageReference Include="DarkNet" Version="2.3.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.61" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
+    <PackageReference Include="Microsoft.Playwright" Version="1.44.0" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2592.51" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Management" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\2gis.ico" />
+    <Resource Include="Resources\Images\google.ico" />
+    <Resource Include="Resources\Images\logo-white.png" />
+    <Resource Include="Resources\Images\logo.ico" />
+    <Resource Include="Resources\Images\proxy.ico" />
+    <Resource Include="Resources\Images\yandex.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\source\repos\WPFGlobe\Map.WPF.Demo\WPF.Globe.ClientControl\WPF.Globe.ClientControl.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\TwoGISMapsPageUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\YandexMapsPageUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

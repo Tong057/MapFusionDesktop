@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapFusion", "MapFusion.csproj", "{B9DAEF2F-04BF-49D5-AE61-AE5276D889E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.Globe.ClientControl", "..\..\source\repos\WPFGlobe\Map.WPF.Demo\WPF.Globe.ClientControl\WPF.Globe.ClientControl.csproj", "{A8ED6E8E-98B8-4EA2-A8E3-59A409005784}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MapFusionSetup", "..\MapFusionSetup\MapFusionSetup.vdproj", "{1C91E782-306A-40E8-BEF5-4C3F38F5677A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9DAEF2F-04BF-49D5-AE61-AE5276D889E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9DAEF2F-04BF-49D5-AE61-AE5276D889E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9DAEF2F-04BF-49D5-AE61-AE5276D889E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9DAEF2F-04BF-49D5-AE61-AE5276D889E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8ED6E8E-98B8-4EA2-A8E3-59A409005784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8ED6E8E-98B8-4EA2-A8E3-59A409005784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8ED6E8E-98B8-4EA2-A8E3-59A409005784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8ED6E8E-98B8-4EA2-A8E3-59A409005784}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C91E782-306A-40E8-BEF5-4C3F38F5677A}.Debug|Any CPU.ActiveCfg = Debug
+		{1C91E782-306A-40E8-BEF5-4C3F38F5677A}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F582B551-6CD3-4063-8BE7-E2C67501DAEF}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="MapFusion.ViewModels.MainPageUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MapFusion.ViewModels"
+             xmlns:cvt="clr-namespace:MapFusion.Utilities"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:globe="clr-namespace:WPF.Globe.ClientControl;assembly=WPF.Globe.ClientControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="Window_Loaded">
+
+    <UserControl.Resources>
+        <cvt:BooleanToBrushConverter x:Key="BooleanToBrushConverter"/>
+        <cvt:BooleanToProxyTextConverter x:Key="BooleanToProxyTextConverter"/>
+        <cvt:BooleanToParseStateTextConverter x:Key="BooleanToParseTextConverter"/>
+    </UserControl.Resources>
+
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" BorderThickness="15" BorderBrush="#3e3e3e" Margin="10, 10, 5, 10" CornerRadius="15">
+            <globe:Globe Name="globe1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" />
+        </Border>
+
+        <Grid Grid.Column="1" Margin="10, 10, 5, 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" Background="#3e3e3e"  CornerRadius="15, 0, 0, 15" Margin="0, 5">
+                <Label Margin="10" Foreground="White" FontSize="20" FontFamily="{StaticResource MaterialDesignFont}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Состояние парсинга" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Label>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1" Background="{Binding MainVM.IsBusy, Converter={StaticResource BooleanToBrushConverter}}"  CornerRadius="0, 15, 15, 0" Margin="0,5">
+                <Label Margin="10" Content="{Binding MainVM.IsBusy, Converter={StaticResource BooleanToParseTextConverter}}" Foreground="White" FontSize="20" FontFamily="{StaticResource MaterialDesignFont}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="0" Background="#3e3e3e"  CornerRadius="15, 0, 0, 15" Margin="0, 5">
+                <Label Margin="10" Foreground="White" FontSize="20" FontFamily="{StaticResource MaterialDesignFont}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Статус парсинга" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Label>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="1" Background="{Binding MainVM.IsBusy, Converter={StaticResource BooleanToBrushConverter}}"  CornerRadius="0, 15, 15, 0" Margin="0, 5">
+                <Grid>
+                    <ProgressBar Foreground="LightGreen" IsIndeterminate="{Binding MainVM.IsBusy}" Style="{StaticResource MaterialDesignCircularProgressBar}" VerticalAlignment="Center" Margin="0, 0, 0, 40" Value="0" Width="60"/>
+                    <Label Margin="10" Height="Auto" Content="{Binding MainVM.ParseStatus}" Foreground="White" FontSize="20" FontFamily="{StaticResource MaterialDesignFont}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="2" Grid.Column="0" Background="#3e3e3e" CornerRadius="15, 0, 0, 15" Margin="0, 5">
+                <Label Margin="10" Content="Прокси" Foreground="White" FontSize="20" FontFamily="{StaticResource MaterialDesignFont}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="1" Background="{Binding MainVM.IsProxyConnected, Converter={StaticResource BooleanToBrushConverter}}" CornerRadius="0, 15, 15, 0" Margin="0, 5">
+                <Label Margin="10" Content="{Binding MainVM.IsProxyConnected, Converter={StaticResource BooleanToProxyTextConverter}}" Foreground="White" FontSize="20" FontFamily="{StaticResource MaterialDesignFont}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+
+            <Border Grid.Row="3" Grid.ColumnSpan="2" Background="#3e3e3e" CornerRadius="15" Margin="0, 5">
+                <Button Command="{Binding OpenManageProxyWindowCommand}" Content="Управление прокси серверами" FontFamily="{StaticResource MaterialDesignFont}" Foreground="White" Style="{StaticResource MaterialDesignFlatDarkButton}" FontSize="20" Grid.Row="3" Grid.ColumnSpan="2" Height="Auto" materialDesign:ButtonAssist.CornerRadius="15"/>
+            </Border>
+
+
+        </Grid>
+    </Grid>
+</UserControl>

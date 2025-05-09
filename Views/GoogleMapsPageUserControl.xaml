@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="MapFusion.Views.GoogleMapsPageUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cvt="clr-namespace:MapFusion.Utilities"
+             xmlns:local="clr-namespace:MapFusion.Models"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <cvt:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </UserControl.Resources>
+
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Border Background="#3e3e3e" Grid.Column="0" CornerRadius="15" Margin="10, 10, 5, 10" BorderThickness="15" BorderBrush="#3e3e3e">
+            <wv2:WebView2 x:Name="Browser" Source="https://www.google.com/maps"/>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="10, 10, 5, 10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="#3e3e3e" CornerRadius="15" Margin="0, 5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Content="Настройки" Grid.Column="0" Padding="10" FontFamily="{StaticResource MaterialDesignFont}" Foreground="White" Style="{StaticResource MaterialDesignFlatDarkButton}" FontSize="15" Height="Auto" materialDesign:ButtonAssist.CornerRadius="16"/>
+                    <ComboBox materialDesign:HintAssist.Foreground="White" materialDesign:HintAssist.FontFamily="{StaticResource MaterialDesignFont}" SelectedValue="{Binding SelectedDepth, Mode=TwoWay}" SelectedValuePath="Tag" materialDesign:HintAssist.Hint="Глубина поиска" FontSize="15" Foreground="White" Style="{StaticResource MaterialDesignOutlinedComboBox}" Background="Transparent" Grid.Column="1">
+                        <ComboBoxItem Content="5" Tag="5" />
+                        <ComboBoxItem Content="10" Tag="10" />
+                        <ComboBoxItem Content="15" Tag="15" />
+                        <ComboBoxItem Content="20" Tag="20" />
+                    </ComboBox>
+                    <Button Content="Экспорт в csv" Grid.Column="2" IsEnabled="{Binding IsExportAvaliable}" Padding="10" Command="{Binding ExportToCsvCommand}" FontFamily="{StaticResource MaterialDesignFont}" Foreground="White" Style="{StaticResource MaterialDesignFlatDarkButton}" FontSize="16" Height="Auto" materialDesign:ButtonAssist.CornerRadius="15"/>
+
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1" Background="#3e3e3e" CornerRadius="15" Margin="0, 5">
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding CurrentQuery.City}" Margin="10" materialDesign:HintAssist.Hint="Город" Foreground="White" FontSize="16"/>
+            </Border>
+
+            <Border Grid.Row="2" Background="#3e3e3e" CornerRadius="15" Margin="0, 5">
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding CurrentQuery.KeyWords}" Margin="10" materialDesign:HintAssist.Hint="Ключевые слова" Foreground="White" FontSize="16"/>
+            </Border>
+
+            <Border Grid.Row="3" Background="#3e3e3e" CornerRadius="15" Margin="0, 5">
+                <TextBox x:Name="OutputTextBox" Text="{Binding OutputText}" Style="{StaticResource MaterialDesignOutlinedTextBox}" VerticalContentAlignment="Top" TextBoxBase.TextChanged="TextBox_TextChanged" IsReadOnly="True" TextWrapping="Wrap" Margin="10" materialDesign:HintAssist.Hint="Output" Foreground="White" FontSize="16" />
+            </Border>
+
+            <Border Grid.Row="4" Background="#3e3e3e" CornerRadius="15" Margin="0, 5">
+                <Button Command="{Binding LaunchParsingCommand}" IsEnabled="{Binding MainVM.IsBusy, Converter={StaticResource InverseBooleanConverter}}" Content="Начать парсинг" FontFamily="{StaticResource MaterialDesignFont}" Foreground="White" Style="{StaticResource MaterialDesignFlatDarkButton}" FontSize="20" Grid.Row="3" Grid.ColumnSpan="2" Height="Auto" materialDesign:ButtonAssist.CornerRadius="15"/>
+            </Border>
+
+            <materialDesign:Snackbar MessageQueue="{Binding SnackbarMessageQueue}" Grid.Row="3" />
+        </Grid>
+    </Grid>
+</UserControl>
